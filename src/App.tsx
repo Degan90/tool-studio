@@ -7,6 +7,7 @@ import './services/toolstudio';
 
 import { Home } from './pages/home/Home';
 import { FunctionPlayer } from './pages/player/Player';
+import NewForm from './pages/NewFunc/NewFunc';
 
 function App() {
 
@@ -18,17 +19,21 @@ function App() {
 						<IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
 							<MenuIcon />
 						</IconButton>
-						<Link to={{pathname: '/'}}className= "link" >
-						   <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+						
+						   <Typography variant="h6" component={Link} to="/" sx={{ flexGrow: 1 }} className="link" >
 							  ToolStudio
 						   </Typography>
-						</Link>
+						   <Typography variant="h6" component={Link} to="/add" sx={{ flexGrow: 14 }} className="link" >
+							 Add
+						   </Typography>
+						
 						
 					</Toolbar>
 				</Container>
 			</AppBar>
 			<BrowserRouter>
 				<Route exact path="/" component={Home} />
+				<Route  path="/add" component={NewForm} />
 				<Route path="/funcs/:group/:name" render={ props => (
 					<FunctionPlayer name={props.match.params.name} group={props.match.params.group}/>
 					)} />

@@ -5,10 +5,13 @@ import { Box, Typography, Container, Paper } from '@mui/material';
 
 import { Function as FunctionInfo } from '@peymanmo/toolstudio-api';
 import {DefaultClient} from "../../services/toolstudio";
+import BasicRating from "../Rating/BasicRating";
+
 
 function FunctionDetails(item: FunctionInfo) {
 	let description = "no description available.";
 	let tags: string[] = [];
+	
 
 	const metadata = item.getMetadata();
 	if (metadata) {
@@ -42,7 +45,7 @@ type PlayerState = {
 };
 
 export class FunctionPlayer extends React.Component<PlayerProps, PlayerState> {
-
+	
 	componentDidMount() {
 		DefaultClient.getFunction(this.props.group, this.props.name, false).then(item => {
 			this.setState({item: item});
@@ -50,7 +53,7 @@ export class FunctionPlayer extends React.Component<PlayerProps, PlayerState> {
 			DefaultClient.manager.install(`${this.props.group}/${this.props.name}`, frame);
 		});
 	}
-
+	
 	render() {
 		let info = (<Box>loading...</Box>);
 		if (this.state && this.state.item)
@@ -63,13 +66,20 @@ export class FunctionPlayer extends React.Component<PlayerProps, PlayerState> {
 						<iframe title="function-viewport" id="main-viewport" style={{ minHeight: "500px" }}>
 						</iframe>
 					</Paper>
+					
+			
+
 				</Container>
+
 				<Container maxWidth="lg" sx={{ mt: "2%" }}>
 					<Typography variant="h5">
 						{this.props.group}/{this.props.name}
 					</Typography>
 					{info}
+					<BasicRating />
+					
 				</Container>
+
 			</Box>
 		);
 	}

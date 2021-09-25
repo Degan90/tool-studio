@@ -1,7 +1,7 @@
 import DefaultToolImage from '../../assets/tool.svg';
 
 import React from 'react';
-import { Typography, TextField, Grid, Container } from '@mui/material';
+import { Typography, TextField, Grid, Container, Rating } from '@mui/material';
 import { Card, CardContent, CardActionArea, CardMedia } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -34,6 +34,8 @@ class FunctionCard extends React.Component<FunctionProps, {}> {
 							<Typography variant="subtitle1" color="text.primary" sx={{ mt: 1 }}>
 								{hashTags.join(" ")}
 							</Typography>
+						{/* replace value with Rating component value */}
+							<Rating name="read-only" value={4} readOnly />
 						</CardContent>
 					</CardActionArea>
 				</Card>
@@ -80,12 +82,14 @@ export class Home extends React.Component<HomeProps, HomeState> {
 		});
 
 		return (
-			<Container maxWidth="md" sx={{ mt: "5%" }}>
+			<Container maxWidth="md" sx={{ mt: "7%" }}>
 				<Typography variant="h4">what are you looking for?</Typography>
 				<TextField id="standard-basic" label="write your keywords... e.g. #pdf #converter #resize" variant="standard" sx={{ width: "100%", mt: "20px" }} />
 				<Grid container spacing={2} sx={{ mt: "10%" }}>
 					{items}
 				</Grid>
+				
+				
 			</Container>
 		);
 	}
