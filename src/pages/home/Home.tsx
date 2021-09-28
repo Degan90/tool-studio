@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 import { DefaultClient } from '../../services/toolstudio';
 import { Function as FunctionInfo } from '@peymanmo/toolstudio-api';
+import Search from '../../Search/Search';
 
 type FunctionProps = {
 	group: string;
@@ -56,6 +57,9 @@ export class Home extends React.Component<HomeProps, HomeState> {
 		items: [],
 	};
 
+	// const [search,setSearch] = React.useState<string>("")
+	
+
 	componentDidMount() {
 		DefaultClient.listFunctions().then(items => {
 			this.setState({items: items});
@@ -84,7 +88,8 @@ export class Home extends React.Component<HomeProps, HomeState> {
 		return (
 			<Container maxWidth="md" sx={{ mt: "7%" }}>
 				<Typography variant="h4">what are you looking for?</Typography>
-				<TextField id="standard-basic" label="write your keywords... e.g. #pdf #converter #resize" variant="standard" sx={{ width: "100%", mt: "20px" }} />
+				{/* <TextField id="standard-basic" label="write your keywords... e.g. #pdf #converter #resize" variant="standard" sx={{ width: "100%", mt: "20px" }} /> */}
+				<Search items ={items} />
 				<Grid container spacing={2} sx={{ mt: "10%" }}>
 					{items}
 				</Grid>
